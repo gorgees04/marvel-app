@@ -20,7 +20,7 @@ const CardDetails = ({
       />
       <div className="m-5 h-[200px] lg:my-10">
         <h1 className="text-2xl font-bold text-marvelRed mb-4">{name}</h1>
-        {description.length > 0 ? (
+        {description.length > 0 && description !== " " ? (
           <p className="w-[350px] lg:w-[700px]">{description}</p>
         ) : (
           <p className="w-[350px] lg:w-[700px]">No Description</p>

@@ -9,27 +9,44 @@ const API_URL = process.env.API_URL;
 const getHash = (ts, privateKey, publicKey) => {
   return MD5(ts + privateKey + publicKey).toString();
 };
+// combine all the link (baseUrl + ts + apikey + hash)
+const ts = Date.now().toString();
+const apiKey = process.env.PUBLIC_KEY;
+const privateKey = process.env.PRIVATE_KEY;
+const hash = getHash(ts, privateKey, apiKey);
 
-export const fetchHeros = (chategory, limit, id) => {
+// get image url
+export const getImageUrl = (img) => {
+  const IMG_SIZE = "portrait_fantastic";
+  return `${img.path}/${IMG_SIZE}.${img.extension}`;
+};
+
+/////////chategory section///////////
+export const urlchategory = (chategory, offset) => {
   const baseUrl = `${API_URL}/v1/public/${chategory}`;
 
-  // ts is the time
-  const ts = Date.now().toString();
-  const apiKey = process.env.PUBLIC_KEY;
-  const privateKey = process.env.PRIVATE_KEY;
-  const hash = getHash(ts, privateKey, apiKey);
-
-  // combine all the link (baseUrl + ts + apikey + hash)
-  const url = `${baseUrl}?limit=${limit}&ts=${ts}&apikey=${apiKey}&hash=${hash}`;
-  if (id) {
-    return `${baseUrl}/${id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
-  }
+  const url = `${baseUrl}?&limit=50&offset=${offset}&ts=${ts}&apikey=${apiKey}&hash=${hash}`;
 
   return url;
 };
 
-export const getImageUrl = (img) => {
-  const IMG_SIZE = "portrait_fantastic";
-
-  return `${img.path}/${IMG_SIZE}.${img.extension}`;
+/////////characters section///////////
+export const getCharacterById = (id) => {
+  const baseUrl = `${API_URL}/v1/public/characters`;
+  return `${baseUrl}/${id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
 };
+
+export const urlChategoryByName = (chategory, name, offset) => {
+  const baseUrl = `${API_URL}/v1/public/${chategory}`;
+  return `${baseUrl}?nameStartsWith=${name}&offset=${offset}&ts=${ts}&apikey=${apiKey}&hash=${hash}`;
+};
+
+export const getCharacterComicsUrl = (id) => {
+  const baseUrl = `${API_URL}/v1/public/characters`;
+  return `${baseUrl}/${id}/comics?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
+};
+////////////////////////////////////////////
+
+/////////characters section///////////
+
+/////////////////////////////////////////////////////

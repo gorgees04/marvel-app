@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import { Marvel } from "next/font/google";
 import "./globals.css";
-import NavBar from "./ui/components/NavBar";
-
-// const marvel = Marvel();
 
 export const metadata: Metadata = {
   title: "Create Next App",

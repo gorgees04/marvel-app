@@ -1,0 +1,52 @@
+import { fetchHerosCharaters } from "@/app/lib/data";
+import Card from "@/app/ui/components/Card";
+import SearchBar from "@/app/ui/components/SearchBar";
+import NotFound from "../not-found";
+// typescript definitions
+import { Character } from "@/app/lib/definitions";
+
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { query: string };
+}) {
+  // geting data from lib/data.tsx file
+  const data = await fetchHerosCharaters();
+  let characters = data.data.results;
+
+  // geting data from params to filter the search engin
+  if (searchParams.query) {
+    const filterCharacter = characters.filter((character: { name: string }) =>
+      character.name.toLowerCase().startsWith(searchParams.query.toLowerCase())
+    );
+    characters = filterCharacter;
+  }
+
+  return (
+    <section className="ml-[150px] md:ml-[250px] mt-[120px] flex flex-col justify-center items-center">
+      <div className="w-full flex justify-center items-center flex-col md:flex-row md:justify-between md:px-10">
+        <h1 className="text-4xl md:text-[40px] font-extrabold text-marvelRed m-4">
+          Characters
+        </h1>
+        <SearchBar />
+      </div>
+      <div className="flex flex-wrap justify-center my-4 w-full">
+        {characters.map((character: Character) => {
+          return (
+            <Card
+              key={character.id}
+              id={character.id}
+              name={character.name}
+              img={character.thumbnail}
+            />
+          );
+        })}
+      </div>
+      {characters.length === 0 && (
+        <div>
+          <NotFound />
+        </div>
+      )}
+    </section>
+  );
+}

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* marvel fornt  */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Lusitana&family=Marvel&display=swap");
 body {
   font-family: "Inter", sans-serif;
   font-family: "Lusitana", serif;

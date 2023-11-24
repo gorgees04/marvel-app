@@ -1,25 +1,35 @@
-import { fetchHerosCharaters } from "@/app/lib/data";
+import { fetchCharacterByName, fetchHerosCharaters } from "@/app/lib/data";
 import Card from "@/app/ui/components/Card";
 import SearchBar from "@/app/ui/components/SearchBar";
 import NotFound from "../not-found";
 // typescript definitions
 import { Character } from "@/app/lib/definitions";
+import Pagination from "@/app/ui/components/Pagination";
 
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { query: string };
+  searchParams: { query?: string; page: string };
 }) {
+  // handling pagination
+  // whenever a click the oofset will be multiplie with page number
+  let page = "0";
+  searchParams.page ? (page = searchParams.page) : page;
+  const offset = 50 * Number(page);
+
   // geting data from lib/data.tsx file
-  const data = await fetchHerosCharaters();
+  const data = await fetchHerosCharaters(offset.toString());
   let characters = data.data.results;
 
   // geting data from params to filter the search engin
   if (searchParams.query) {
-    const filterCharacter = characters.filter((character: { name: string }) =>
-      character.name.toLowerCase().startsWith(searchParams.query.toLowerCase())
+    searchParams.page ? (page = searchParams.page) : page;
+    const characterName = await fetchCharacterByName(
+      searchParams.query.toLowerCase(),
+      offset.toString()
     );
-    characters = filterCharacter;
+
+    characters = characterName.data.results;
   }
 
   return (
@@ -47,6 +57,7 @@ export default async function Page({
           <NotFound />
         </div>
       )}
+      <Pagination charactersLength={characters.length} />
     </section>
   );
 }

@@ -17,18 +17,20 @@ const SearchBar = () => {
     // useinf get to assign a param for the link
     if (term) {
       params.set("query", term);
+      params.set("page", "0");
     } else {
       params.delete("query");
     }
 
     // replace the link with including the query params
     replace(`${pathname}?${params.toString()}`);
-  }, 300);
+  }, 1000);
 
   return (
     <div className="m-5 md:pr-5">
       <input
         type="text"
+        name="search"
         placeholder="search..."
         className="border-4 border-black rounded-md p-1 md:p-2"
         onChange={(e) => handleSearch(e.target.value)}

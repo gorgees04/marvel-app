@@ -1,24 +1,52 @@
-import { fetchCharacterById, fetchCharacterComics } from "@/app/lib/data";
+import {
+  fetchCharacterById,
+  fetchCharacters,
+  fetchCharactersComics,
+  fetchCharactersEvents,
+  fetchCharactersSeries,
+  fetchCharactersStories,
+} from "@/app/lib/data";
 // typescript definitions
 import { Character } from "@/app/lib/definitions";
 import { getImageUrl } from "@/app/lib/utils";
-import Card from "@/app/ui/components/Card";
 import CardDetails from "@/app/ui/components/CardDetails";
+import Collection from "@/app/ui/components/Collection";
+import Story from "@/app/ui/components/Story";
+
+export async function generateStaticParams() {
+  const charactersData = await fetchCharacters("0");
+  const posts = charactersData.data.results;
+
+  return posts.map((post: Character) => ({
+    id: post.id.toString(),
+  }));
+}
 
 const page = async ({ params }: { params: { id: string } }) => {
   // geting params from url depending on character's id
   const { id } = params;
-  // fetching data depending on id that we got it from params
+  // characters data by ID
   const data = await fetchCharacterById(id);
   const characterPage = data.data.results;
 
-  // comics
-  const comicsData = await fetchCharacterComics(id);
+  // Characters comics
+  const comicsData = await fetchCharactersComics(id);
   const comics = comicsData.data.results;
-  console.log(comics);
+
+  // characters series
+  const characterSeriesData = await fetchCharactersSeries(id);
+  const characterSeries = characterSeriesData.data.results;
+
+  // characters events
+  const characterEventsData = await fetchCharactersEvents(id);
+  const characterEvents = characterEventsData.data.results;
+
+  // characters stories
+  const characterStoriesData = await fetchCharactersStories(id);
+  const characterStories = characterStoriesData.data.results;
 
   return (
-    <section className="ml-[150px] md:ml-[250px] mt-[120px] text-white">
+    <section className="ml-[120px] md:ml-[220px] mt-[120px] text-white">
       <div className="m-10">
         {characterPage.map((character: Character) => {
           return (
@@ -30,18 +58,10 @@ const page = async ({ params }: { params: { id: string } }) => {
           );
         })}
       </div>
-      <div className="flex flex-wrap">
-        {comics.map((comic) => {
-          return (
-            <Card
-              key={comic.id}
-              name={comic.title}
-              img={comic.thumbnail}
-              id={comic.id}
-            />
-          );
-        })}
-      </div>
+      <Collection title={"Comics"} category={comics} />
+      <Collection title={"Series"} category={characterSeries} />
+      <Collection title={"Events"} category={characterEvents} />
+      <Story stories={characterStories} />
     </section>
   );
 };

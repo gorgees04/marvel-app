@@ -4,13 +4,15 @@ const CardDetails = ({
   name,
   imgUrl,
   description,
+  date,
 }: {
   name: string;
   imgUrl: string;
-  description: string;
+  description?: string;
+  date?: string;
 }) => {
   return (
-    <div className="flex flex-col lg:flex-row">
+    <div className="flex flex-col lg:flex-row mb-[70px] md:mb-[100px]">
       <Image
         src={imgUrl}
         alt={name}
@@ -20,11 +22,21 @@ const CardDetails = ({
       />
       <div className="m-5 h-[200px] lg:my-10">
         <h1 className="text-2xl font-bold text-marvelRed mb-4">{name}</h1>
-        {description.length > 0 && description !== " " ? (
-          <p className="w-[350px] lg:w-[700px]">{description}</p>
+        {description !== "" && description !== " " && description !== null ? (
+          <p className="w-[200px] sm:w-[500px] md:w-[650px]">{description}</p>
         ) : (
-          <p className="w-[350px] lg:w-[700px]">No Description</p>
+          <p className="">No Description</p>
         )}
+        <div>
+          {date && (
+            <div>
+              <p className="mt-10 text-lg font-bold text-marvelRed">
+                Published:{" "}
+                <span className=" text-gray-400 font-normal">{date}</span>
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

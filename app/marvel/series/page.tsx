@@ -1,9 +1,9 @@
-import { fetchComics, fetchComicsByTitle } from "@/app/lib/data";
+import { fetchSeries, fetchSeriesByTitle } from "@/app/lib/data";
 import NotFound from "../not-found";
-import Card from "@/app/ui/components/Card";
 import { Comic } from "@/app/lib/definitions";
 import Pagination from "@/app/ui/components/Pagination";
 import Header from "@/app/ui/components/Header";
+import Card from "@/app/ui/components/Card";
 
 export default async function Page({
   searchParams,
@@ -14,46 +14,44 @@ export default async function Page({
   const page = searchParams.page;
   const offset = 50 * Number(page);
 
-  // fetching comics data
-  const comicsData = await fetchComics(offset.toString());
-  let comics = comicsData.data.results;
+  // fetching series data
+  const seriesData = await fetchSeries(offset.toString());
+  let series = seriesData.data.results;
 
-  // search comics
+  // search series
   const SearchValue = searchParams.query;
   if (SearchValue) {
-    const searchComicsData = await fetchComicsByTitle(
+    const searchSeriesData = await fetchSeriesByTitle(
       SearchValue.toLowerCase(),
       offset.toString()
     );
-    const searchComics = searchComicsData.data.results;
-    comics = searchComics;
+    const searchSeries = searchSeriesData.data.results;
+    series = searchSeries;
   }
 
   return (
     <section className="ml-[150px] md:ml-[250px] mt-[120px] flex flex-col justify-center items-center">
-      <Header title={"Comics"} />
-
+      <Header title={"Series"} />
       <div className="flex flex-wrap justify-center my-4 w-full">
-        {comics.map((comic: Comic) => {
+        {series.map((aSeries: Comic) => {
           return (
             <Card
-              category="comics"
-              key={comic.id}
-              name={comic.title}
-              img={comic.thumbnail}
-              id={comic.id}
+              category="series"
+              key={aSeries.id}
+              name={aSeries.title}
+              img={aSeries.thumbnail}
+              id={aSeries.id}
             />
           );
         })}
       </div>
-
       <div className="flex flex-wrap justify-center my-4 w-full"></div>
-      {comics.length === 0 && (
+      {series.length === 0 && (
         <div>
           <NotFound />
         </div>
       )}
-      <Pagination charactersLength={comics.length} />
+      <Pagination charactersLength={series.length} />
     </section>
   );
 }

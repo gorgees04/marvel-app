@@ -1,10 +1,10 @@
-import { fetchCharacterByName, fetchHerosCharaters } from "@/app/lib/data";
+import { fetchCharacters, fetchCharactersByName } from "@/app/lib/data";
 import Card from "@/app/ui/components/Card";
-import SearchBar from "@/app/ui/components/SearchBar";
 import NotFound from "../not-found";
 // typescript definitions
 import { Character } from "@/app/lib/definitions";
 import Pagination from "@/app/ui/components/Pagination";
+import Header from "@/app/ui/components/Header";
 
 export default async function Page({
   searchParams,
@@ -13,37 +13,33 @@ export default async function Page({
 }) {
   // handling pagination
   // whenever a click the oofset will be multiplie with page number
-  let page = "0";
-  searchParams.page ? (page = searchParams.page) : page;
+  const page = searchParams.page;
   const offset = 50 * Number(page);
 
   // geting data from lib/data.tsx file
-  const data = await fetchHerosCharaters(offset.toString());
-  let characters = data.data.results;
+  const charactersData = await fetchCharacters(offset.toString());
+  let characters = charactersData.data.results;
 
   // geting data from params to filter the search engin
-  if (searchParams.query) {
-    searchParams.page ? (page = searchParams.page) : page;
-    const characterName = await fetchCharacterByName(
-      searchParams.query.toLowerCase(),
+  const SearchValue = searchParams.query;
+  if (SearchValue) {
+    const searchCharactersData = await fetchCharactersByName(
+      SearchValue.toLowerCase(),
       offset.toString()
     );
-
-    characters = characterName.data.results;
+    const searchCharacters = searchCharactersData.data.results;
+    characters = searchCharacters;
   }
 
   return (
     <section className="ml-[150px] md:ml-[250px] mt-[120px] flex flex-col justify-center items-center">
-      <div className="w-full flex justify-center items-center flex-col md:flex-row md:justify-between md:px-10">
-        <h1 className="text-4xl md:text-[40px] font-extrabold text-marvelRed m-4">
-          Characters
-        </h1>
-        <SearchBar />
-      </div>
+      <Header title={"Characters"} />
+
       <div className="flex flex-wrap justify-center my-4 w-full">
         {characters.map((character: Character) => {
           return (
             <Card
+              category="characters"
               key={character.id}
               id={character.id}
               name={character.name}

@@ -1,7 +1,7 @@
-import { fetchComics, fetchComicsByTitle } from "@/app/lib/data";
+import { fetchEvents, fetchEventsByTitle } from "@/app/lib/data";
 import NotFound from "../not-found";
 import Card from "@/app/ui/components/Card";
-import { Comic } from "@/app/lib/definitions";
+import { Events } from "@/app/lib/definitions";
 import Pagination from "@/app/ui/components/Pagination";
 import Header from "@/app/ui/components/Header";
 
@@ -14,46 +14,44 @@ export default async function Page({
   const page = searchParams.page;
   const offset = 50 * Number(page);
 
-  // fetching comics data
-  const comicsData = await fetchComics(offset.toString());
-  let comics = comicsData.data.results;
+  // fetching Events data
+  const eventsData = await fetchEvents(offset.toString());
+  let events = eventsData.data.results;
 
-  // search comics
+  // search Events
   const SearchValue = searchParams.query;
   if (SearchValue) {
-    const searchComicsData = await fetchComicsByTitle(
+    const searchEventsData = await fetchEventsByTitle(
       SearchValue.toLowerCase(),
       offset.toString()
     );
-    const searchComics = searchComicsData.data.results;
-    comics = searchComics;
+    const searchEvents = searchEventsData.data.results;
+    events = searchEvents;
   }
 
   return (
     <section className="ml-[150px] md:ml-[250px] mt-[120px] flex flex-col justify-center items-center">
-      <Header title={"Comics"} />
-
+      <Header title={"Events"} />
       <div className="flex flex-wrap justify-center my-4 w-full">
-        {comics.map((comic: Comic) => {
+        {events.map((event: Events) => {
           return (
             <Card
-              category="comics"
-              key={comic.id}
-              name={comic.title}
-              img={comic.thumbnail}
-              id={comic.id}
+              category="events"
+              key={event.id}
+              name={event.title}
+              img={event.thumbnail}
+              id={event.id}
             />
           );
         })}
       </div>
-
       <div className="flex flex-wrap justify-center my-4 w-full"></div>
-      {comics.length === 0 && (
+      {events.length === 0 && (
         <div>
           <NotFound />
         </div>
       )}
-      <Pagination charactersLength={comics.length} />
+      <Pagination charactersLength={events.length} />
     </section>
   );
 }

@@ -7,7 +7,14 @@ const MarvelSideBar = () => {
   const pathname = usePathname().split("/");
   const linkCategory = pathname[2];
 
-  const categories = ["characters", "comics", "series", "stories"];
+  const categories = [
+    "characters",
+    "comics",
+    "creators",
+    "series",
+    "events",
+    "stories",
+  ];
 
   return (
     <aside className="fixed top-[100px] z-10 left-0 flex flex-col w-[150px] md:w-[250px] h-screen text-white p-1 md:p-6 shadow-xl">

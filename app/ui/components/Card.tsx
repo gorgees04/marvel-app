@@ -22,8 +22,8 @@ const Card = ({
           src={getImageUrl(img)}
           alt={name}
           width={200}
-          height={0}
-          className="md:w-[200px] overflow-hidden border-b-8 border-b-marvelRed shadow-inner shadow-black"
+          height={300}
+          className="md:w-[200px] h-auto overflow-hidden border-b-8 border-b-marvelRed shadow-inner shadow-black"
           priority={true}
         />
         <p

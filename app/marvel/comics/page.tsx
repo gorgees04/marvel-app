@@ -33,7 +33,7 @@ export default async function Page({
     <section className="flex flex-col justify-center items-center">
       <Header title={"Comics"} />
 
-      <div className="flex flex-wrap justify-center my-4 w-full">
+      {/* <div className="flex flex-wrap justify-center my-4 w-full">
         {comics.map((comic: Comic) => {
           return (
             <Card
@@ -45,7 +45,7 @@ export default async function Page({
             />
           );
         })}
-      </div>
+      </div> */}
 
       <div className="flex flex-wrap justify-center my-4 w-full"></div>
       {comics.length === 0 && (

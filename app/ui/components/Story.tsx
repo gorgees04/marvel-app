@@ -1,7 +1,7 @@
 const Story = ({ stories }: { stories: { title: string }[] }) => {
   if (stories.length > 0) {
     return (
-      <div className="m-12">
+      <div className="m-12 text-white">
         <h1 className="text-4xl font-bold text-marvelRed">Stories</h1>
         <ul className="m-2">
           {stories.map((story: { title: string }) => {

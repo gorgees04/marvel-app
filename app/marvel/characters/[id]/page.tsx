@@ -1,17 +1,12 @@
-import {
-  fetchCharacterById,
-  fetchCharacters,
-  fetchCharactersComics,
-  fetchCharactersEvents,
-  fetchCharactersSeries,
-  fetchCharactersStories,
-} from "@/app/lib/data";
+import { fetchCharacters } from "@/app/lib/data";
 // typescript definitions
 import { Character } from "@/app/lib/definitions";
-import { getImageUrl } from "@/app/lib/utils";
-import CardDetails from "@/app/ui/components/CardDetails";
-import Collection from "@/app/ui/components/Collection";
-import Story from "@/app/ui/components/Story";
+import CharactersComics from "@/app/ui/components/characters/CharactersComics";
+import CharactersDetails from "@/app/ui/components/characters/CharactersDetails";
+import CharactersEvents from "@/app/ui/components/characters/CharactersEvents";
+import CharactersSeries from "@/app/ui/components/characters/CharactersSeries";
+import CharactersStories from "@/app/ui/components/characters/CharactersStories";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const charactersData = await fetchCharacters("0");
@@ -22,46 +17,31 @@ export async function generateStaticParams() {
   }));
 }
 
-const page = async ({ params }: { params: { id: string } }) => {
+const page = ({ params }: { params: { id: string } }) => {
   // geting params from url depending on character's id
   const { id } = params;
-  // characters data by ID
-  const data = await fetchCharacterById(id);
-  const characterPage = data.data.results;
-
-  // Characters comics
-  const comicsData = await fetchCharactersComics(id);
-  const comics = comicsData.data.results;
-
-  // characters series
-  const characterSeriesData = await fetchCharactersSeries(id);
-  const characterSeries = characterSeriesData.data.results;
-
-  // characters events
-  const characterEventsData = await fetchCharactersEvents(id);
-  const characterEvents = characterEventsData.data.results;
-
-  // characters stories
-  const characterStoriesData = await fetchCharactersStories(id);
-  const characterStories = characterStoriesData.data.results;
 
   return (
-    <section className="ml-[120px] md:ml-[220px] mt-[120px] text-white">
-      <div className="m-10">
-        {characterPage.map((character: Character) => {
-          return (
-            <CardDetails
-              name={character.name}
-              imgUrl={getImageUrl(character.thumbnail)}
-              description={character.description}
-            />
-          );
-        })}
-      </div>
-      <Collection title={"Comics"} category={comics} />
-      <Collection title={"Series"} category={characterSeries} />
-      <Collection title={"Events"} category={characterEvents} />
-      <Story stories={characterStories} />
+    <section>
+      <Suspense fallback={<p className="text-white">Loading feed...</p>}>
+        <CharactersDetails id={id} />
+      </Suspense>
+
+      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+        <CharactersComics id={id} />
+      </Suspense>
+
+      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+        <CharactersSeries id={id} />
+      </Suspense>
+
+      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+        <CharactersEvents id={id} />
+      </Suspense>
+
+      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+        <CharactersStories id={id} />
+      </Suspense>
     </section>
   );
 };

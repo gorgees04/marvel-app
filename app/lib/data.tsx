@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import {
   urlCharactersByName,
   urlComicsByTitle,
@@ -41,11 +42,9 @@ import {
 /////////fetch characters//////////
 export const fetchCharacters = async (offset: string) => {
   try {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 4000);
-    });
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
     const URL = urlCharacters(offset);
-    const res = await fetch(URL, { next: { revalidate: 0 } });
+    const res = await fetch(URL);
     return res.json();
   } catch (error) {
     console.error("Database Error:", error);

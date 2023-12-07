@@ -49,7 +49,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   const seriesStories = seriesStoriesData.data.results;
 
   return (
-    <section className="ml-[150px] md:ml-[250px] mt-[120px] text-white">
+    <section>
       <div className="m-10">
         {seriesPage.map((aSeries: Series) => {
           return (

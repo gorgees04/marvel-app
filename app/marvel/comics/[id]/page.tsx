@@ -52,7 +52,7 @@ const page = async ({ params }: { params: { id: string } }) => {
     return `${year}-${month}-${day}`;
   };
   return (
-    <section className="ml-[150px] md:ml-[250px] mt-[120px] text-white">
+    <section>
       <div className="m-10">
         {comicsPage.map((comic: Comic) => {
           return (

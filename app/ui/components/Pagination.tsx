@@ -43,19 +43,21 @@ const Pagination = ({ charactersLength }: { charactersLength: number }) => {
     // }
   }, [page]);
 
-  return (
-    <div className="w-full flex justify-around items-center text-white my-10">
-      {page > 0 ? (
-        <Btn btnName={"Previuos"} handleClick={() => handleClick("prev")} />
-      ) : (
-        <div></div>
-      )}
-      <Image src={spidermanIcon} alt="spiderman icon" width={80} height={0} />
-      {charactersLength !== 0 && (
-        <Btn btnName={"Next"} handleClick={() => handleClick("next")} />
-      )}
-    </div>
-  );
+  if (charactersLength >= 30) {
+    return (
+      <div className="w-full flex justify-around items-center text-white my-10">
+        {page > 0 ? (
+          <Btn btnName={"Previuos"} handleClick={() => handleClick("prev")} />
+        ) : (
+          <div></div>
+        )}
+        <Image src={spidermanIcon} alt="spiderman icon" width={80} height={0} />
+        {charactersLength !== 0 && (
+          <Btn btnName={"Next"} handleClick={() => handleClick("next")} />
+        )}
+      </div>
+    );
+  }
 };
 
 export default Pagination;

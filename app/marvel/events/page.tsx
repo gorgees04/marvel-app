@@ -30,7 +30,7 @@ export default async function Page({
   }
 
   return (
-    <section className="ml-[150px] md:ml-[250px] mt-[120px] flex flex-col justify-center items-center">
+    <section className="flex flex-col justify-center items-center">
       <Header title={"Events"} />
       <div className="flex flex-wrap justify-center my-4 w-full">
         {events.map((event: Events) => {

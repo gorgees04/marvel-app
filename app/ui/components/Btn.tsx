@@ -5,7 +5,7 @@ const Btn = ({
   handleClick,
 }: {
   btnName: string;
-  handleClick: any;
+  handleClick: () => void;
 }) => {
   return (
     <div>

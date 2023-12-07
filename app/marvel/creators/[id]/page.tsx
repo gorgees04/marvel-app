@@ -44,7 +44,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   const creatorsStories = creatorsStoriesData.data.results;
 
   return (
-    <section className="ml-[150px] md:ml-[250px] mt-[120px] text-white">
+    <section>
       <div className="m-10">
         {creatorsPage.map((creator: Creators) => {
           return (

@@ -28,7 +28,7 @@ export const getImageUrl = (img) => {
 const charactersBaseUrl = `${API_URL}/v1/public/characters`;
 
 export const urlCharacters = (offset) => {
-  return `${charactersBaseUrl}?limit=50&offset=${offset}&${link}`;
+  return `${charactersBaseUrl}?limit=30&offset=${offset}&${link}`;
 };
 
 export const urlCharactersByName = (name, offset) => {

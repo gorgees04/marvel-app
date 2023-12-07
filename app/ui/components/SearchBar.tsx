@@ -1,4 +1,5 @@
 "use client";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
@@ -24,7 +25,7 @@ const SearchBar = () => {
 
     // replace the link with including the query params
     replace(`${pathname}?${params.toString()}`);
-  }, 1000);
+  }, 300);
 
   return (
     <div className="m-5 md:pr-5">
@@ -34,6 +35,7 @@ const SearchBar = () => {
         placeholder="search..."
         className="border-4 border-black rounded-md p-1 md:p-2"
         onChange={(e) => handleSearch(e.target.value)}
+        defaultValue={searchParams.get("query")?.toString()}
       />
     </div>
   );

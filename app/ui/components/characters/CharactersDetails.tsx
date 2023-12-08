@@ -10,18 +10,16 @@ const CharactersDetails = async ({ id }: { id: string }) => {
   const characterPage = data.data.results;
   return (
     <div className="m-10">
-      <Suspense fallback={<h1>Loading...</h1>}>
-        {characterPage.map((character: Character) => {
-          return (
-            <CardDetails
-              name={character.name}
-              imgUrl={getImageUrl(character.thumbnail)}
-              description={character.description}
-              key={character.id}
-            />
-          );
-        })}
-      </Suspense>
+      {characterPage.map((character: Character) => {
+        return (
+          <CardDetails
+            name={character.name}
+            imgUrl={getImageUrl(character.thumbnail)}
+            description={character.description}
+            key={character.id}
+          />
+        );
+      })}
     </div>
   );
 };

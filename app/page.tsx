@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <main className="text-white">
       <Link href={"/marvel"}>Marvel</Link>
-      <DetailsSkeletonLoading />
     </main>
   );
 }

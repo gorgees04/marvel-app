@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NavBar from "./ui/components/NavBar";
 
 export const metadata: Metadata = {
   title: "G-Marvel",
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <NavBar />
         <div className="content">{children}</div>
       </body>
     </html>

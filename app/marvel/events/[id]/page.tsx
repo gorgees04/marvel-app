@@ -57,6 +57,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               name={comic.title}
               imgUrl={getImageUrl(comic.thumbnail)}
               description={comic.description}
+              key={comic.id}
             />
           );
         })}

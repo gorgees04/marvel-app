@@ -24,10 +24,9 @@ const Collection = ({
               header = category.title;
             }
             return (
-              <div className="w-[180px]">
+              <div className="w-[180px]" key={category.id}>
                 <Card
                   category={title.toLocaleLowerCase()}
-                  key={category.id}
                   name={header}
                   img={category.thumbnail}
                   id={category.id}

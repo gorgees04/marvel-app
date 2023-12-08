@@ -61,6 +61,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               imgUrl={getImageUrl(comic.thumbnail)}
               description={comic.description}
               date={getPublishedDate(comic.dates[0].date)}
+              key={comic.id}
             />
           );
         })}

@@ -57,6 +57,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               name={aSeries.title}
               imgUrl={getImageUrl(aSeries.thumbnail)}
               description={aSeries.description}
+              key={aSeries.id}
             />
           );
         })}

@@ -51,6 +51,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <CardDetails
               name={creator.fullName}
               imgUrl={getImageUrl(creator.thumbnail)}
+              key={creator.id}
             />
           );
         })}

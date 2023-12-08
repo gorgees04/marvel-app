@@ -17,6 +17,7 @@ const CharactersDetails = async ({ id }: { id: string }) => {
               name={character.name}
               imgUrl={getImageUrl(character.thumbnail)}
               description={character.description}
+              key={character.id}
             />
           );
         })}

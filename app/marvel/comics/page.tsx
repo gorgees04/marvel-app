@@ -1,7 +1,4 @@
 import { fetchComics, fetchComicsByTitle } from "@/app/lib/data";
-import NotFound from "../not-found";
-import Card from "@/app/ui/components/Card";
-import { Comic } from "@/app/lib/definitions";
 import Pagination from "@/app/ui/components/Pagination";
 import Header from "@/app/ui/components/Header";
 import { Suspense } from "react";

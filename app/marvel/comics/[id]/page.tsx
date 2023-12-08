@@ -1,16 +1,5 @@
-import {
-  fetchComics,
-  fetchComicsById,
-  fetchComicsCharacters,
-  fetchComicsCreators,
-  fetchComicsEvents,
-  fetchComicsStories,
-} from "@/app/lib/data";
+import { fetchComics } from "@/app/lib/data";
 import { Comic } from "@/app/lib/definitions";
-import { getImageUrl } from "@/app/lib/utils";
-import CardDetails from "@/app/ui/components/CardDetails";
-import Collection from "@/app/ui/components/Collection";
-import Story from "@/app/ui/components/Story";
 import ComicsCharacters from "@/app/ui/components/comics/ComicsCharacters";
 import ComicsCreators from "@/app/ui/components/comics/ComicsCreators";
 import ComicsDetails from "@/app/ui/components/comics/ComicsDetails";

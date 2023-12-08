@@ -6,7 +6,7 @@ import CardsLoadingSkeltons from "./ui/components/charactersLoadingSkeletons/Car
 export default function Home() {
   return (
     <main className="text-white">
-      <CardsLoadingSkeltons />
+      <Link href={"/marvel"}>Marvel</Link>
     </main>
   );
 }

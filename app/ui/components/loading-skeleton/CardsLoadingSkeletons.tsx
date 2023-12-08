@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardsLoadingSkeltons = () => {
+const CardsLoadingSkeletons = () => {
   const cards = new Array(30).fill(null);
   return (
     <div className="flex flex-col justify-center items-center">
@@ -24,4 +24,4 @@ const CardsLoadingSkeltons = () => {
   );
 };
 
-export default CardsLoadingSkeltons;
+export default CardsLoadingSkeletons;

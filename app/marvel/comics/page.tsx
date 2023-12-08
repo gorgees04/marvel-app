@@ -4,6 +4,9 @@ import Card from "@/app/ui/components/Card";
 import { Comic } from "@/app/lib/definitions";
 import Pagination from "@/app/ui/components/Pagination";
 import Header from "@/app/ui/components/Header";
+import { Suspense } from "react";
+import CardsLoadingSkeletons from "@/app/ui/components/loading-skeleton/CardsLoadingSkeletons";
+import Comics from "@/app/ui/components/comics/Comics";
 
 export default async function Page({
   searchParams,
@@ -32,28 +35,13 @@ export default async function Page({
   return (
     <section className="flex flex-col justify-center items-center">
       <Header title={"Comics"} />
-
-      {/* <div className="flex flex-wrap justify-center my-4 w-full">
-        {comics.map((comic: Comic) => {
-          return (
-            <Card
-              category="comics"
-              key={comic.id}
-              name={comic.title}
-              img={comic.thumbnail}
-              id={comic.id}
-            />
-          );
-        })}
-      </div> */}
-
-      <div className="flex flex-wrap justify-center my-4 w-full"></div>
-      {comics.length === 0 && (
-        <div>
-          <NotFound />
-        </div>
-      )}
-      <Pagination charactersLength={comics.length} />
+      <Suspense
+        key={searchParams.query + searchParams.page}
+        fallback={<CardsLoadingSkeletons />}
+      >
+        <Comics query={searchParams.query} page={searchParams.page} />
+      </Suspense>
+      <Pagination charactersLength={30} />
     </section>
   );
 }

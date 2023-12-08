@@ -1,8 +1,8 @@
 import Header from "@/app/ui/components/Header";
 import Pagination from "@/app/ui/components/Pagination";
 import Characters from "@/app/ui/components/characters/Characters";
-import CardsLoadingSkeltons from "@/app/ui/components/charactersLoadingSkeletons/CardsLoadingSkeltons";
-import { Suspense, useState } from "react";
+import CardsLoadingSkeletons from "@/app/ui/components/loading-skeleton/CardsLoadingSkeletons";
+import { Suspense } from "react";
 
 const page = ({
   searchParams,
@@ -14,7 +14,7 @@ const page = ({
       <Header title={"Characters"} />
       <Suspense
         key={searchParams.query + searchParams.page}
-        fallback={<CardsLoadingSkeltons />}
+        fallback={<CardsLoadingSkeletons />}
       >
         <Characters query={searchParams.query} page={searchParams.page} />
       </Suspense>

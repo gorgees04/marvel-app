@@ -11,6 +11,12 @@ import { getImageUrl } from "@/app/lib/utils";
 import CardDetails from "@/app/ui/components/CardDetails";
 import Collection from "@/app/ui/components/Collection";
 import Story from "@/app/ui/components/Story";
+import ComicsCharacters from "@/app/ui/components/comics/ComicsCharacters";
+import ComicsCreators from "@/app/ui/components/comics/ComicsCreators";
+import ComicsDetails from "@/app/ui/components/comics/ComicsDetails";
+import ComicsEvents from "@/app/ui/components/comics/ComicsEvents";
+import ComicsStories from "@/app/ui/components/comics/ComicsStories";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const comicsData = await fetchComics("0");
@@ -23,53 +29,24 @@ export async function generateStaticParams() {
 
 const page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  // fetch single comic by id
-  const comicsIdData = await fetchComicsById(id);
-  const comicsPage = comicsIdData.data.results;
 
-  // Comics characters
-  const comicsCharactersData = await fetchComicsCharacters(id);
-  const comicsCharacters = comicsCharactersData.data.results;
-
-  // Comics creators
-  const comicsCreatorsData = await fetchComicsCreators(id);
-  const comicsCreators = comicsCreatorsData.data.results;
-
-  // Comics Events
-  const comicsEventsData = await fetchComicsEvents(id);
-  const comicsEvents = comicsEventsData.data.results;
-
-  // Comics stories
-  const comicsStoriesData = await fetchComicsStories(id);
-  const comicsStories = comicsStoriesData.data.results;
-
-  // get date from api
-  const getPublishedDate = (dateOfPublish: string) => {
-    const date = new Date(dateOfPublish);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return `${year}-${month}-${day}`;
-  };
   return (
     <section>
-      <div className="m-10">
-        {comicsPage.map((comic: Comic) => {
-          return (
-            <CardDetails
-              name={comic.title}
-              imgUrl={getImageUrl(comic.thumbnail)}
-              description={comic.description}
-              date={getPublishedDate(comic.dates[0].date)}
-              key={comic.id}
-            />
-          );
-        })}
-      </div>
-      <Collection title={"Characters"} category={comicsCharacters} />
-      <Collection title={"Creators"} category={comicsCreators} />
-      <Collection title={"Events"} category={comicsEvents} />
-      <Story stories={comicsStories} />
+      <Suspense fallback={<p className="text-white">Loading feed...</p>}>
+        <ComicsDetails id={id} />
+      </Suspense>
+      <Suspense fallback={<p className="text-white">Loading feed...</p>}>
+        <ComicsCharacters id={id} />
+      </Suspense>
+      <Suspense fallback={<p className="text-white">Loading feed...</p>}>
+        <ComicsCreators id={id} />
+      </Suspense>
+      <Suspense fallback={<p className="text-white">Loading feed...</p>}>
+        <ComicsEvents id={id} />
+      </Suspense>
+      <Suspense fallback={<p className="text-white">Loading feed...</p>}>
+        <ComicsStories id={id} />
+      </Suspense>
     </section>
   );
 };

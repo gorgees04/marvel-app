@@ -1,3 +1,4 @@
+import { CategoriesLinks } from "./definitions";
 import {
   urlCharactersByName,
   urlComicsByTitle,
@@ -44,6 +45,35 @@ export const fetchMainSearch = async (category: string, value: string) => {
   try {
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     const URL = urlMainSearch(category, value);
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch revenue data.");
+  }
+};
+/////////////////////////////
+
+//////////Fetch Categories////////
+export const fetchCategory = async (
+  category: CategoriesLinks,
+  offset: string
+) => {
+  const categoriesLinks = {
+    characters: urlCharacters(offset),
+    comics: urlComics(offset),
+    creaters: urlCreators(offset),
+    events: urlEvents(offset),
+    series: urlSeries(offset),
+  };
+  try {
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
+    let URL;
+    if (category in categoriesLinks) {
+      URL = categoriesLinks[category];
+    } else {
+      throw new Error(`Invalid category: ${category}`);
+    }
     const res = await fetch(URL);
     return res.json();
   } catch (error) {

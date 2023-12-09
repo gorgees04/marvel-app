@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import {
   urlCharactersByName,
   urlComicsByTitle,
@@ -37,7 +36,21 @@ import {
   urlEventsCreators,
   urlEventsSeries,
   urlEventsStories,
+  urlMainSearch,
 } from "./utils";
+
+//////Home Search/////
+export const fetchMainSearch = async (category: string, value: string) => {
+  try {
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
+    const URL = urlMainSearch(category, value);
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch revenue data.");
+  }
+};
 
 /////////fetch characters//////////
 export const fetchCharacters = async (offset: string) => {

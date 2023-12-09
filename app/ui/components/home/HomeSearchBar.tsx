@@ -18,6 +18,7 @@ const HomeSearchBar = () => {
       params.set("query", term);
     } else {
       params.delete("query");
+      params.delete("category");
     }
 
     // replace the link with including the query params
@@ -30,7 +31,7 @@ const HomeSearchBar = () => {
         type="text"
         name="search"
         placeholder="Search for Marvel...."
-        className="w-[400px] rounded border-4 border-marvelRed p-2 bg-slate-200 text-marvelRed font-bold "
+        className="w-[400px] rounded border-4 border-marvelRed p-2 bg-slate-200 text-marvelRed font-bold"
         onChange={(e) => handleSearch(e.target.value)}
         defaultValue={searchParams.get("query")?.toString()}
       />

@@ -17,7 +17,6 @@ const SearchBar = () => {
     // useinf get to assign a param for the link
     if (term) {
       params.set("query", term);
-      params.set("page", "0");
     } else {
       params.delete("query");
     }

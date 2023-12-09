@@ -1,9 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import HomeSearchBar from "./ui/components/home/HomeSearchBar";
-import HomeContent from "./ui/components/home/HomeContent";
+import HomeCategories from "./ui/components/home/HomeCategories";
+import HomeSearchContents from "./ui/components/home/HomeSearchContents";
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: {
+  searchParams: { query: string; category: string };
+}) {
+  const query = searchParams.query;
+  const category = searchParams.category;
   return (
     <main className="text-white flex items-center flex-col mt-[80px] mx-5">
       <div className="text-center mt-10">
@@ -22,11 +29,10 @@ export default function Home() {
         </Link>
       </div>
 
-      <div>
+      <div className="text-center">
         <HomeSearchBar />
-      </div>
-      <div>
-        <HomeContent />
+        <HomeCategories />
+        <HomeSearchContents query={query} category={category} />
       </div>
     </main>
   );

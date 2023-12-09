@@ -83,17 +83,17 @@ export const fetchCategory = async (
 };
 
 /////////fetch characters//////////
-export const fetchCharacters = async (offset: string) => {
-  try {
-    // await new Promise((resolve) => setTimeout(resolve, 5000));
-    const URL = urlCharacters(offset);
-    const res = await fetch(URL);
-    return res.json();
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch revenue data.");
-  }
-};
+// export const fetchCharacters = async (offset: string) => {
+//   try {
+//     // await new Promise((resolve) => setTimeout(resolve, 5000));
+//     const URL = urlCharacters(offset);
+//     const res = await fetch(URL);
+//     return res.json();
+//   } catch (error) {
+//     console.error("Database Error:", error);
+//     throw new Error("Failed to fetch revenue data.");
+//   }
+// };
 
 export const fetchCharacterById = async (id: string) => {
   const URL = urlCharactersById(id);

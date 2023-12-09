@@ -1,9 +1,8 @@
-import { fetchCharacters, fetchCharactersByName } from "@/app/lib/data";
+import { fetchCategory, fetchCharactersByName } from "@/app/lib/data";
 import Card from "@/app/ui/components/Card";
 import NotFound from "@/app/marvel/not-found";
 // typescript definitions
 import { Character } from "@/app/lib/definitions";
-import Pagination from "@/app/ui/components/Pagination";
 
 export default async function Characters({
   query,
@@ -18,7 +17,7 @@ export default async function Characters({
   const offset = 30 * Number(page);
 
   // geting data from lib/data.tsx file
-  const charactersData = await fetchCharacters(offset.toString());
+  const charactersData = await fetchCategory("characters", offset.toString());
   let characters = charactersData.data.results;
 
   // geting data from params to filter the search engin

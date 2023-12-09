@@ -95,10 +95,10 @@ export const fetchCategoryByName = async (
   // object of each category and its link
   const categoryByNameLinks = {
     characters: urlCharactersByName(name, offset),
-    comics: urlComics(offset),
-    creaters: urlCreators(offset),
-    events: urlEvents(offset),
-    series: urlSeries(offset),
+    comics: urlComicsByTitle(name, offset),
+    creaters: urlCreatorsByName(name, offset),
+    events: urlEventsByTitle(name, offset),
+    series: urlSeriesByTitle(name, offset),
   };
 
   let URL;
@@ -111,6 +111,35 @@ export const fetchCategoryByName = async (
   const res = await fetch(URL);
   return res.json();
 };
+
+////////////////////////////
+
+////////////////fetch category by name///////////
+export const fetchCategoryById = async (
+  category: CategoriesLinks,
+  id: string
+) => {
+  // object of each category and its link
+  const categoryByIdLinks = {
+    characters: urlCharactersById(id),
+    comics: urlComicsById(id),
+    creaters: urlCreatorsById(id),
+    events: urlEventsById(id),
+    series: urlSeriesById(id),
+  };
+
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categoryByIdLinks) {
+    URL = categoryByIdLinks[category];
+  } else {
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+
+////////////////////////////
 
 /////////fetch characters//////////
 // export const fetchCharacters = async (offset: string) => {

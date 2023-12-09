@@ -10,7 +10,7 @@ const Card = ({
   img,
   id,
 }: {
-  category: string;
+  category: string | undefined;
   name: string;
   img: Img;
   id: string;

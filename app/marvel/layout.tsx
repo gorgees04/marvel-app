@@ -8,7 +8,6 @@ export default function marvelLayout({
 }) {
   return (
     <main className="marvel-bg ">
-      <NavBar />
       <MarvelSideBar />
       <section className="mt-[170px] ml-0 sm:ml-[150px] sm:mt-[120px] md:ml-[250px]">
         {children}

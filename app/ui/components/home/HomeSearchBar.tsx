@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-const SearchBar = () => {
-  // to get query
+const HomeSearchBar = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -19,6 +18,7 @@ const SearchBar = () => {
       params.set("query", term);
     } else {
       params.delete("query");
+      params.delete("category");
     }
 
     // replace the link with including the query params
@@ -26,12 +26,12 @@ const SearchBar = () => {
   }, 300);
 
   return (
-    <div className="m-5 md:pr-5">
+    <div className="text-white my-10">
       <input
         type="text"
         name="search"
-        placeholder="search..."
-        className="border-4 border-black rounded-md p-1 md:p-2"
+        placeholder="Search for Marvel...."
+        className="w-[400px] rounded border-4 border-marvelRed p-2 bg-slate-200 text-marvelRed font-bold"
         onChange={(e) => handleSearch(e.target.value)}
         defaultValue={searchParams.get("query")?.toString()}
       />
@@ -39,4 +39,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default HomeSearchBar;

@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "./ui/img/avengers-logo.png";
-import CardsLoadingSkeltons from "./ui/components/loading-skeleton/CardsLoadingSkeletons";
-import DetailsSkeletonLoading from "./ui/components/loading-skeleton/DetailsSkeletonLoading";
+import HomeSearchBar from "./ui/components/home/HomeSearchBar";
+import HomeContent from "./ui/components/home/HomeContent";
 
 export default function Home() {
-  const categories = ["characters", "comics", "creators", "series", "events"];
   return (
     <main className="text-white flex items-center flex-col mt-[80px] mx-5">
-      <div className="text-center my-10">
+      <div className="text-center mt-10">
         <h1 className="text-3xl sm:text-6xl mb-2 font-bold">
           Welcome to G-Marvel website
         </h1>
@@ -17,17 +15,18 @@ export default function Home() {
         </p>
       </div>
       <div>
-        <ul className="flex flex-wrap justify-center items-center w-[400px] sm:w-[700px]">
-          {categories.map((category: string) => {
-            return (
-              <Link href={`/marvel/${category}`} key={category}>
-                <li className="m-5 text-xl bg-marvelRed border-4 border-white p-1 w-[115px] text-center">
-                  {category}
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
+        <Link href={"/marvel"}>
+          <h2 className="mt-5 text-lg hover:text-marvelRed">
+            Fine out more &gt;&gt;
+          </h2>
+        </Link>
+      </div>
+
+      <div>
+        <HomeSearchBar />
+      </div>
+      <div>
+        <HomeContent />
       </div>
     </main>
   );

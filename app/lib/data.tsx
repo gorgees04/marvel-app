@@ -166,7 +166,6 @@ export const fetchCategoryComics = async (
     1;
     throw new Error(`Invalid category: ${category}`);
   }
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await fetch(URL);
   return res.json();
 };

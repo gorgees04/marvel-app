@@ -1,7 +1,9 @@
 import {
   CategoriesLinks,
   CategoryComicsLinks,
+  CategoryEventsLinks,
   CategorySeriesLinks,
+  CategoryStoriesLinks,
 } from "./definitions";
 import {
   urlCharactersByName,
@@ -195,20 +197,44 @@ export const fetchCategorySeries = async (
 
 ///////////fetch categoy Events/////////
 export const fetchCategoryEvents = async (
-  category: CategorySeriesLinks,
+  category: CategoryEventsLinks,
   id: string
 ) => {
-  const categorySeriesLink = {
+  const categoryEventsLink = {
     characters: urlCharactersEvents(id),
     comics: urlComicsEvents(id),
     creators: urlCreatorsEvents(id),
-    events: urlEventsSeries(id),
     series: urlSeriesEvents(id),
   };
   let URL;
   // checking if the category passed contain the object
-  if (category in categorySeriesLink) {
-    URL = categorySeriesLink[category];
+  if (category in categoryEventsLink) {
+    URL = categoryEventsLink[category];
+  } else {
+    1;
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+//////////////////////////////////////////
+
+///////////fetch categoy Stories/////////
+export const fetchCategoryStories = async (
+  category: CategoryStoriesLinks,
+  id: string
+) => {
+  const categoryStoriesLink = {
+    characters: urlCharactersStories(id),
+    comics: urlComicsStories(id),
+    creators: urlCreatorsStories(id),
+    events: urlEventsSeries(id),
+    series: urlSeriesStories(id),
+  };
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categoryStoriesLink) {
+    URL = categoryStoriesLink[category];
   } else {
     1;
     throw new Error(`Invalid category: ${category}`);
@@ -255,17 +281,17 @@ export const fetchCategoryEvents = async (
 //   return res.json();
 // };
 
-export const fetchCharactersEvents = async (id: string) => {
-  const URL = urlCharactersEvents(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchCharactersEvents = async (id: string) => {
+//   const URL = urlCharactersEvents(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchCharactersStories = async (id: string) => {
-  const URL = urlCharactersStories(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchCharactersStories = async (id: string) => {
+//   const URL = urlCharactersStories(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
 ////////////////////////////////////////
 

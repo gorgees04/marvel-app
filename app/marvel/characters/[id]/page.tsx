@@ -1,4 +1,4 @@
-import { fetchCharacters } from "@/app/lib/data";
+import { fetchCategory } from "@/app/lib/data";
 // typescript definitions
 import { Character } from "@/app/lib/definitions";
 import CharactersComics from "@/app/ui/components/characters/CharactersComics";
@@ -9,7 +9,7 @@ import CharactersStories from "@/app/ui/components/characters/CharactersStories"
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
-  const charactersData = await fetchCharacters("0");
+  const charactersData = await fetchCategory("characters", "0");
   const posts = charactersData.data.results;
 
   return posts.map((post: Character) => ({

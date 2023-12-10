@@ -53,3 +53,31 @@ export interface CollectionType {
   fullName: string;
   thumbnail: { path: string; extension: string };
 }
+
+export type CategoriesLinks =
+  | "characters"
+  | "comics"
+  | "creators"
+  | "events"
+  | "series";
+
+export type CategoryComicsLinks =
+  | "characters"
+  | "creators"
+  | "events"
+  | "series";
+
+export type CategorySeriesLinks = "characters" | "creators" | "events";
+
+export type CategoryEventsLinks =
+  | "characters"
+  | "comics"
+  | "creators"
+  | "series";
+
+export type CategoryStoriesLinks =
+  | "characters"
+  | "comics"
+  | "creators"
+  | "events"
+  | "series";

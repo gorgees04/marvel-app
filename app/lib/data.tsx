@@ -120,7 +120,7 @@ export const fetchCategoryByName = async (
 
 ////////////////////////////
 
-////////////////fetch category by name///////////
+////////////////fetch category by id///////////
 export const fetchCategoryById = async (
   category: CategoriesLinks,
   id: string
@@ -141,6 +141,7 @@ export const fetchCategoryById = async (
   } else {
     throw new Error(`Invalid category: ${category}`);
   }
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await fetch(URL);
   return res.json();
 };

@@ -66,3 +66,12 @@ export type CategoryComicsLinks =
   | "creators"
   | "events"
   | "series";
+
+export type CategorySeriesLinks = "characters" | "creators" | "events";
+
+export type CategoryEventsLinks =
+  | "characters"
+  | "comics"
+  | "creators"
+  | "events"
+  | "series";

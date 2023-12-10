@@ -1,4 +1,8 @@
-import { CategoriesLinks, CategoryComicsLinks } from "./definitions";
+import {
+  CategoriesLinks,
+  CategoryComicsLinks,
+  CategorySeriesLinks,
+} from "./definitions";
 import {
   urlCharactersByName,
   urlComicsByTitle,
@@ -141,7 +145,7 @@ export const fetchCategoryById = async (
 
 ////////////////////////////
 
-//////////////fetch category commics/////////////
+//////////////fetch category Comics/////////////
 
 export const fetchCategoryComics = async (
   category: CategoryComicsLinks,
@@ -164,6 +168,55 @@ export const fetchCategoryComics = async (
   const res = await fetch(URL);
   return res.json();
 };
+///////////////////////////////////
+
+///////////fetch categoy Series/////////
+export const fetchCategorySeries = async (
+  category: CategorySeriesLinks,
+  id: string
+) => {
+  const categorySeriesLink = {
+    characters: urlCharactersSeries(id),
+    creators: urlCreatorsSeries(id),
+    events: urlEventsSeries(id),
+  };
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categorySeriesLink) {
+    URL = categorySeriesLink[category];
+  } else {
+    1;
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+//////////////////////////////////////////
+
+///////////fetch categoy Events/////////
+export const fetchCategoryEvents = async (
+  category: CategorySeriesLinks,
+  id: string
+) => {
+  const categorySeriesLink = {
+    characters: urlCharactersEvents(id),
+    comics: urlComicsEvents(id),
+    creators: urlCreatorsEvents(id),
+    events: urlEventsSeries(id),
+    series: urlSeriesEvents(id),
+  };
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categorySeriesLink) {
+    URL = categorySeriesLink[category];
+  } else {
+    1;
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+//////////////////////////////////////////
 
 /////////fetch characters//////////
 // export const fetchCharacters = async (offset: string) => {
@@ -196,11 +249,11 @@ export const fetchCategoryComics = async (
 //   return res.json();
 // };
 
-export const fetchCharactersSeries = async (id: string) => {
-  const URL = urlCharactersSeries(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchCharactersSeries = async (id: string) => {
+//   const URL = urlCharactersSeries(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
 export const fetchCharactersEvents = async (id: string) => {
   const URL = urlCharactersEvents(id);

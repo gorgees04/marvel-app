@@ -75,7 +75,6 @@ export const fetchCategory = async (
   };
 
   try {
-    // await new Promise((resolve) => setTimeout(resolve, 5000));
     let URL;
     // checking if the category passed contain the object
     if (category in categoriesLinks) {
@@ -120,7 +119,7 @@ export const fetchCategoryByName = async (
 
 ////////////////////////////
 
-////////////////fetch category by name///////////
+////////////////fetch category by id///////////
 export const fetchCategoryById = async (
   category: CategoriesLinks,
   id: string
@@ -167,6 +166,7 @@ export const fetchCategoryComics = async (
     1;
     throw new Error(`Invalid category: ${category}`);
   }
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const res = await fetch(URL);
   return res.json();
 };

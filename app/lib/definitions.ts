@@ -61,6 +61,10 @@ export type CategoriesLinks =
   | "events"
   | "series";
 
+export type CategoryCharacters = "comics" | "events" | "series";
+
+export type CategoryCreators = "comics" | "events" | "series";
+
 export type CategoryComicsLinks =
   | "characters"
   | "creators"

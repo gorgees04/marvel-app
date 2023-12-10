@@ -1,10 +1,10 @@
-import { fetchComicsEvents } from "@/app/lib/data";
+import { fetchCategoryEvents } from "@/app/lib/data";
 import React from "react";
 import Collection from "../Collection";
 
 const ComicsEvents = async ({ id }: { id: string }) => {
   // Comics Events
-  const comicsEventsData = await fetchComicsEvents(id);
+  const comicsEventsData = await fetchCategoryEvents("comics", id);
   const comicsEvents = comicsEventsData.data.results;
 
   return (

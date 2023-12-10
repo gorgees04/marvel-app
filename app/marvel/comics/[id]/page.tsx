@@ -7,6 +7,7 @@ import ComicsEvents from "@/app/ui/components/comics/ComicsEvents";
 import ComicsStories from "@/app/ui/components/comics/ComicsStories";
 import CollectionLoadingSkeleton from "@/app/ui/components/loading-skeleton/CollectionLoadingSkeleton";
 import DetailsSkeletonLoading from "@/app/ui/components/loading-skeleton/DetailsSkeletonLoading";
+import StoryLoadingSkeleton from "@/app/ui/components/loading-skeleton/StoryLoadingSkeleton";
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
@@ -36,7 +37,7 @@ const page = ({ params }: { params: { id: string } }) => {
       <Suspense fallback={<CollectionLoadingSkeleton />}>
         <ComicsEvents id={id} />
       </Suspense>
-      <Suspense fallback={<CollectionLoadingSkeleton />}>
+      <Suspense fallback={<StoryLoadingSkeleton />}>
         <ComicsStories id={id} />
       </Suspense>
     </section>

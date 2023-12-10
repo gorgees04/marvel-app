@@ -57,6 +57,12 @@ export interface CollectionType {
 export type CategoriesLinks =
   | "characters"
   | "comics"
-  | "creaters"
+  | "creators"
+  | "events"
+  | "series";
+
+export type CategoryComicsLinks =
+  | "characters"
+  | "creators"
   | "events"
   | "series";

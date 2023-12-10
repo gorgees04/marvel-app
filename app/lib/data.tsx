@@ -1,4 +1,4 @@
-import { CategoriesLinks } from "./definitions";
+import { CategoriesLinks, CategoryComicsLinks } from "./definitions";
 import {
   urlCharactersByName,
   urlComicsByTitle,
@@ -63,7 +63,7 @@ export const fetchCategory = async (
   const categoriesLinks = {
     characters: urlCharacters(offset),
     comics: urlComics(offset),
-    creaters: urlCreators(offset),
+    creators: urlCreators(offset),
     events: urlEvents(offset),
     series: urlSeries(offset),
   };
@@ -96,7 +96,7 @@ export const fetchCategoryByName = async (
   const categoryByNameLinks = {
     characters: urlCharactersByName(name, offset),
     comics: urlComicsByTitle(name, offset),
-    creaters: urlCreatorsByName(name, offset),
+    creators: urlCreatorsByName(name, offset),
     events: urlEventsByTitle(name, offset),
     series: urlSeriesByTitle(name, offset),
   };
@@ -123,7 +123,7 @@ export const fetchCategoryById = async (
   const categoryByIdLinks = {
     characters: urlCharactersById(id),
     comics: urlComicsById(id),
-    creaters: urlCreatorsById(id),
+    creators: urlCreatorsById(id),
     events: urlEventsById(id),
     series: urlSeriesById(id),
   };
@@ -141,6 +141,30 @@ export const fetchCategoryById = async (
 
 ////////////////////////////
 
+//////////////fetch category commics/////////////
+
+export const fetchCategoryComics = async (
+  category: CategoryComicsLinks,
+  id: string
+) => {
+  const categoryComicsLink = {
+    characters: urlCharactersComics(id),
+    creators: urlCreatorsComics(id),
+    events: urlEventsComics(id),
+    series: urlSeriesComics(id),
+  };
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categoryComicsLink) {
+    URL = categoryComicsLink[category];
+  } else {
+    1;
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+
 /////////fetch characters//////////
 // export const fetchCharacters = async (offset: string) => {
 //   try {
@@ -154,11 +178,11 @@ export const fetchCategoryById = async (
 //   }
 // };
 
-export const fetchCharacterById = async (id: string) => {
-  const URL = urlCharactersById(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchCharacterById = async (id: string) => {
+//   const URL = urlCharactersById(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
 // export const fetchCharactersByName = async (name: string, offset: string) => {
 //   const URL = urlCharactersByName(name, offset);
@@ -166,11 +190,11 @@ export const fetchCharacterById = async (id: string) => {
 //   return res.json();
 // };
 
-export const fetchCharactersComics = async (id: string) => {
-  const URL = urlCharactersComics(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchCharactersComics = async (id: string) => {
+//   const URL = urlCharactersComics(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
 export const fetchCharactersSeries = async (id: string) => {
   const URL = urlCharactersSeries(id);

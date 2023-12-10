@@ -1,21 +1,24 @@
-import { fetchComics, fetchComicsByTitle } from "@/app/lib/data";
+import { fetchCategory, fetchCategoryByName } from "@/app/lib/data";
 import React from "react";
 import Card from "../Card";
 import NotFound from "@/app/marvel/not-found";
 import { Comic } from "@/app/lib/definitions";
 
 const Comics = async ({ query, page }: { query?: string; page: string }) => {
+  // page name
+  const category = "comics";
   // get page params from path
   const offset = 50 * Number(page);
 
   // fetching comics data
-  const comicsData = await fetchComics(offset.toString());
+  const comicsData = await fetchCategory(category, offset.toString());
   let comics = comicsData.data.results;
 
   // search comics
   const SearchValue = query;
   if (SearchValue) {
-    const searchComicsData = await fetchComicsByTitle(
+    const searchComicsData = await fetchCategoryByName(
+      category,
       SearchValue.toLowerCase(),
       offset.toString()
     );

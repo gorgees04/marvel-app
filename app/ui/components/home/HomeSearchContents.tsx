@@ -15,7 +15,7 @@ const HomeSearchContents = async ({
     const getData = await fetchMainSearch(category, query);
     searchResults = getData.data.results;
   }
-  console.log(searchResults);
+  // console.log(searchResults);
 
   if (query && category) {
     return (

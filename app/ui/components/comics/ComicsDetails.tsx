@@ -1,4 +1,4 @@
-import { fetchComicsById } from "@/app/lib/data";
+import { fetchCategoryById } from "@/app/lib/data";
 import React from "react";
 import CardDetails from "../CardDetails";
 import { getImageUrl } from "@/app/lib/utils";
@@ -6,7 +6,7 @@ import { Comic } from "@/app/lib/definitions";
 
 const ComicsDetails = async ({ id }: { id: string }) => {
   // fetch single comic by id
-  const comicsIdData = await fetchComicsById(id);
+  const comicsIdData = await fetchCategoryById("comics", id);
   const comicsPage = comicsIdData.data.results;
 
   // get date from api

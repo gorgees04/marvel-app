@@ -1,6 +1,8 @@
 import {
   CategoriesLinks,
+  CategoryCharacters,
   CategoryComicsLinks,
+  CategoryCreators,
   CategoryEventsLinks,
   CategorySeriesLinks,
   CategoryStoriesLinks,
@@ -137,6 +139,56 @@ export const fetchCategoryById = async (
   // checking if the category passed contain the object
   if (category in categoryByIdLinks) {
     URL = categoryByIdLinks[category];
+  } else {
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+
+////////////////////////////
+
+////////////////fetch category Characters///////////
+export const fetchCategoryCharacters = async (
+  category: CategoryCharacters,
+  id: string
+) => {
+  // object of each category and its link
+  const categoryCharactersLinks = {
+    comics: urlComicsCharacters(id),
+    events: urlEventsCharacters(id),
+    series: urlSeriesCharacters(id),
+  };
+
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categoryCharactersLinks) {
+    URL = categoryCharactersLinks[category];
+  } else {
+    throw new Error(`Invalid category: ${category}`);
+  }
+  const res = await fetch(URL);
+  return res.json();
+};
+
+////////////////////////////
+
+////////////////fetch category Characters///////////
+export const fetchCategoryCreators = async (
+  category: CategoryCreators,
+  id: string
+) => {
+  // object of each category and its link
+  const categoryCreatorsLink = {
+    comics: urlComicsCreators(id),
+    events: urlEventsCreators(id),
+    series: urlSeriesCreators(id),
+  };
+
+  let URL;
+  // checking if the category passed contain the object
+  if (category in categoryCreatorsLink) {
+    URL = categoryCreatorsLink[category];
   } else {
     throw new Error(`Invalid category: ${category}`);
   }
@@ -295,47 +347,47 @@ export const fetchCategoryStories = async (
 ////////////////////////////////////////
 
 /////////fetch comics//////////
-export const fetchComics = async (offset: string) => {
-  const URL = urlComics(offset);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComics = async (offset: string) => {
+//   const URL = urlComics(offset);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchComicsByTitle = async (title: string, offset: string) => {
-  const URL = urlComicsByTitle(title, offset);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComicsByTitle = async (title: string, offset: string) => {
+//   const URL = urlComicsByTitle(title, offset);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchComicsById = async (id: string) => {
-  const URL = urlComicsById(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComicsById = async (id: string) => {
+//   const URL = urlComicsById(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchComicsCharacters = async (id: string) => {
-  const URL = urlComicsCharacters(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComicsCharacters = async (id: string) => {
+//   const URL = urlComicsCharacters(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchComicsCreators = async (id: string) => {
-  const URL = urlComicsCreators(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComicsCreators = async (id: string) => {
+//   const URL = urlComicsCreators(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchComicsEvents = async (id: string) => {
-  const URL = urlComicsEvents(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComicsEvents = async (id: string) => {
+//   const URL = urlComicsEvents(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
-export const fetchComicsStories = async (id: string) => {
-  const URL = urlComicsStories(id);
-  const res = await fetch(URL);
-  return res.json();
-};
+// export const fetchComicsStories = async (id: string) => {
+//   const URL = urlComicsStories(id);
+//   const res = await fetch(URL);
+//   return res.json();
+// };
 
 ////////////////////////////////////////
 

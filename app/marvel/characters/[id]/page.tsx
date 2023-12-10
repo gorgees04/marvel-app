@@ -6,6 +6,7 @@ import CharactersDetails from "@/app/ui/components/characters/CharactersDetails"
 import CharactersEvents from "@/app/ui/components/characters/CharactersEvents";
 import CharactersSeries from "@/app/ui/components/characters/CharactersSeries";
 import CharactersStories from "@/app/ui/components/characters/CharactersStories";
+import CollectionLoadingSkeleton from "@/app/ui/components/loading-skeleton/CollectionLoadingSkeleton";
 import DetailsSkeletonLoading from "@/app/ui/components/loading-skeleton/DetailsSkeletonLoading";
 import { Suspense } from "react";
 
@@ -28,19 +29,19 @@ const page = ({ params }: { params: { id: string } }) => {
         <CharactersDetails id={id} />
       </Suspense>
 
-      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+      <Suspense fallback={<CollectionLoadingSkeleton />}>
         <CharactersComics id={id} />
       </Suspense>
 
-      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+      <Suspense fallback={<CollectionLoadingSkeleton />}>
         <CharactersSeries id={id} />
       </Suspense>
 
-      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+      <Suspense fallback={<CollectionLoadingSkeleton />}>
         <CharactersEvents id={id} />
       </Suspense>
 
-      <Suspense fallback={<h1 className="text-white">Loading...</h1>}>
+      <Suspense fallback={<CollectionLoadingSkeleton />}>
         <CharactersStories id={id} />
       </Suspense>
     </section>

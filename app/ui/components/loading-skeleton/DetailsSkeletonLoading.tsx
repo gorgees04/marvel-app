@@ -4,7 +4,7 @@ const DetailsSkeletonLoading = () => {
   return (
     <div className="flex flex-col ml-[50px] lg:flex-row mb-[50px] md:mb-[100px] text-white animate-pulse">
       {/* Image Placeholder */}
-      <div className="w-[150px] h-[230px] lg:w-[240px] lg:h-[280px] m-5 border-4 border-gray-400  rounded bg-gray-700"></div>
+      <div className="w-[150px] h-[230px] lg:w-[255px] lg:h-[300px] m-3 border-4 border-gray-400  rounded bg-gray-700"></div>
 
       <div className="m-5 lg:my-10 w-full">
         {/* Title Placeholder */}

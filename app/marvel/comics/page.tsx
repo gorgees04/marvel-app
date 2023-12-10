@@ -18,7 +18,7 @@ export default function Page({
       >
         <Comics query={searchParams.query} page={searchParams.page} />
       </Suspense>
-      <Pagination charactersLength={30} />
+      <Pagination pagesLength={30} />
     </section>
   );
 }

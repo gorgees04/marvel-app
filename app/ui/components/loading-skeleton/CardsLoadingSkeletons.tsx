@@ -1,5 +1,3 @@
-import React from "react";
-
 const CardsLoadingSkeletons = () => {
   const cards = new Array(30).fill(null);
   return (

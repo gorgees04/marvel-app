@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import spidermanIcon from "../img/spiderman.png";
 
-const Pagination = ({ charactersLength }: { charactersLength: number }) => {
+const Pagination = ({ pagesLength }: { pagesLength: number }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -43,7 +43,7 @@ const Pagination = ({ charactersLength }: { charactersLength: number }) => {
     // }
   }, [page]);
 
-  if (charactersLength >= 30) {
+  if (pagesLength >= 30) {
     return (
       <div className="w-full flex justify-around items-center text-white my-10">
         {page > 0 ? (
@@ -52,7 +52,7 @@ const Pagination = ({ charactersLength }: { charactersLength: number }) => {
           <div></div>
         )}
         <Image src={spidermanIcon} alt="spiderman icon" width={80} height={0} />
-        {charactersLength !== 0 && (
+        {pagesLength !== 0 && (
           <Btn btnName={"Next"} handleClick={() => handleClick("next")} />
         )}
       </div>

@@ -13,6 +13,7 @@ const page = ({
     <section className="flex flex-col justify-center items-center">
       <Header title={"Characters"} />
       <Suspense
+        // pass a key when query and page params uses, it will show loading skeleton
         key={searchParams.query + searchParams.page}
         fallback={<CardsLoadingSkeletons />}
       >

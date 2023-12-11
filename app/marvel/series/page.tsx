@@ -12,7 +12,11 @@ export default function Page({
   return (
     <section className="flex flex-col justify-center items-center">
       <Header title={"Series"} />
-      <Suspense fallback={<CardsLoadingSkeletons />}>
+      <Suspense
+        // pass a key when query and page params uses, it will show loading skeleton
+        key={searchParams.query + searchParams.page}
+        fallback={<CardsLoadingSkeletons />}
+      >
         <Series query={searchParams.query} page={searchParams.page} />
       </Suspense>
       <Pagination pagesLength={30} />

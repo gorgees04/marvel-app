@@ -1,57 +1,25 @@
-import { fetchEvents, fetchEventsByTitle } from "@/app/lib/data";
-import NotFound from "../not-found";
-import Card from "@/app/ui/components/Card";
-import { Events } from "@/app/lib/definitions";
 import Pagination from "@/app/ui/components/Pagination";
 import Header from "@/app/ui/components/Header";
+import { Suspense } from "react";
+import CardsLoadingSkeletons from "@/app/ui/components/loading-skeleton/CardsLoadingSkeletons";
+import Events from "@/app/ui/components/events/Events";
 
-export default async function Page({
+export default function Page({
   searchParams,
 }: {
   searchParams: { query?: string; page: string };
 }) {
-  // get page params from path
-  const page = searchParams.page;
-  const offset = 50 * Number(page);
-
-  // fetching Events data
-  const eventsData = await fetchEvents(offset.toString());
-  let events = eventsData.data.results;
-
-  // search Events
-  const SearchValue = searchParams.query;
-  if (SearchValue) {
-    const searchEventsData = await fetchEventsByTitle(
-      SearchValue.toLowerCase(),
-      offset.toString()
-    );
-    const searchEvents = searchEventsData.data.results;
-    events = searchEvents;
-  }
-
   return (
     <section className="flex flex-col justify-center items-center">
       <Header title={"Events"} />
-      <div className="flex flex-wrap justify-center my-4 w-full">
-        {events.map((event: Events) => {
-          return (
-            <Card
-              category="events"
-              key={event.id}
-              name={event.title}
-              img={event.thumbnail}
-              id={event.id}
-            />
-          );
-        })}
-      </div>
-      <div className="flex flex-wrap justify-center my-4 w-full"></div>
-      {events.length === 0 && (
-        <div>
-          <NotFound />
-        </div>
-      )}
-      <Pagination charactersLength={events.length} />
+      <Suspense
+        // pass a key when query and page params uses, it will show loading skeleton
+        key={searchParams.query + searchParams.page}
+        fallback={<CardsLoadingSkeletons />}
+      >
+        <Events query={searchParams.query} page={searchParams.page} />
+      </Suspense>
+      <Pagination pagesLength={30} />
     </section>
   );
 }

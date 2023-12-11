@@ -21,7 +21,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const page = async ({ params }: { params: { id: string } }) => {
+const page = ({ params }: { params: { id: string } }) => {
   const { id } = params;
 
   return (

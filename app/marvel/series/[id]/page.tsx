@@ -1,4 +1,4 @@
-import { fetchSeries } from "@/app/lib/data";
+import { fetchCategory } from "@/app/lib/data";
 import { Series } from "@/app/lib/definitions";
 import CardsLoadingSkeletons from "@/app/ui/components/loading-skeleton/CardsLoadingSkeletons";
 import CollectionLoadingSkeleton from "@/app/ui/components/loading-skeleton/CollectionLoadingSkeleton";
@@ -13,7 +13,7 @@ import SeriesStoriests from "@/app/ui/components/series/SeriesStoriests";
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
-  const seriesData = await fetchSeries("0");
+  const seriesData = await fetchCategory("series", "0");
   const posts = seriesData.data.results;
 
   return posts.map((post: Series) => ({

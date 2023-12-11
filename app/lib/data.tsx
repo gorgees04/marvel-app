@@ -88,7 +88,7 @@ export const fetchCategory = async (
     return res.json();
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch revenue data.");
+    throw new Error("Failed to fetch categories data.");
   }
 };
 /////////////////////////////////////////////////
@@ -108,15 +108,20 @@ export const fetchCategoryByName = async (
     series: urlSeriesByTitle(name, offset),
   };
 
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryByNameLinks) {
-    URL = categoryByNameLinks[category];
-  } else {
-    throw new Error(`Invalid category: ${category}`);
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryByNameLinks) {
+      URL = categoryByNameLinks[category];
+    } else {
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to search data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 
 ////////////////////////////
@@ -134,16 +139,20 @@ export const fetchCategoryById = async (
     events: urlEventsById(id),
     series: urlSeriesById(id),
   };
-
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryByIdLinks) {
-    URL = categoryByIdLinks[category];
-  } else {
-    throw new Error(`Invalid category: ${category}`);
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryByIdLinks) {
+      URL = categoryByIdLinks[category];
+    } else {
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch single page data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 
 ////////////////////////////
@@ -159,16 +168,20 @@ export const fetchCategoryCharacters = async (
     events: urlEventsCharacters(id),
     series: urlSeriesCharacters(id),
   };
-
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryCharactersLinks) {
-    URL = categoryCharactersLinks[category];
-  } else {
-    throw new Error(`Invalid category: ${category}`);
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryCharactersLinks) {
+      URL = categoryCharactersLinks[category];
+    } else {
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch characters data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 
 ////////////////////////////
@@ -185,15 +198,20 @@ export const fetchCategoryCreators = async (
     series: urlSeriesCreators(id),
   };
 
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryCreatorsLink) {
-    URL = categoryCreatorsLink[category];
-  } else {
-    throw new Error(`Invalid category: ${category}`);
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryCreatorsLink) {
+      URL = categoryCreatorsLink[category];
+    } else {
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch creators data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 
 ////////////////////////////
@@ -210,16 +228,22 @@ export const fetchCategoryComics = async (
     events: urlEventsComics(id),
     series: urlSeriesComics(id),
   };
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryComicsLink) {
-    URL = categoryComicsLink[category];
-  } else {
-    1;
-    throw new Error(`Invalid category: ${category}`);
+
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryComicsLink) {
+      URL = categoryComicsLink[category];
+    } else {
+      1;
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Comics data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 ///////////////////////////////////
 
@@ -233,16 +257,22 @@ export const fetchCategorySeries = async (
     creators: urlCreatorsSeries(id),
     events: urlEventsSeries(id),
   };
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categorySeriesLink) {
-    URL = categorySeriesLink[category];
-  } else {
-    1;
-    throw new Error(`Invalid category: ${category}`);
+
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categorySeriesLink) {
+      URL = categorySeriesLink[category];
+    } else {
+      1;
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Series data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 //////////////////////////////////////////
 
@@ -257,16 +287,22 @@ export const fetchCategoryEvents = async (
     creators: urlCreatorsEvents(id),
     series: urlSeriesEvents(id),
   };
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryEventsLink) {
-    URL = categoryEventsLink[category];
-  } else {
-    1;
-    throw new Error(`Invalid category: ${category}`);
+
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryEventsLink) {
+      URL = categoryEventsLink[category];
+    } else {
+      1;
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Events data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 //////////////////////////////////////////
 
@@ -282,16 +318,21 @@ export const fetchCategoryStories = async (
     events: urlEventsStories(id),
     series: urlSeriesStories(id),
   };
-  let URL;
-  // checking if the category passed contain the object
-  if (category in categoryStoriesLink) {
-    URL = categoryStoriesLink[category];
-  } else {
-    1;
-    throw new Error(`Invalid category: ${category}`);
+  try {
+    let URL;
+    // checking if the category passed contain the object
+    if (category in categoryStoriesLink) {
+      URL = categoryStoriesLink[category];
+    } else {
+      1;
+      throw new Error(`Invalid category: ${category}`);
+    }
+    const res = await fetch(URL);
+    return res.json();
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch Stories data.");
   }
-  const res = await fetch(URL);
-  return res.json();
 };
 //////////////////////////////////////////
 

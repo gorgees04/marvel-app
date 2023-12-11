@@ -1,12 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import url("https://fonts.cdnfonts.com/css/comics"); */
-@import url("https://fonts.cdnfonts.com/css/komika-axis");
-
-body {
-  font-family: "Komika Axis";
-}
 
 body {
   margin: 0;

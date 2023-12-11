@@ -1,6 +1,10 @@
+import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "./ui/components/NavBar";
+
+// adding local font using next/font
+const komika = localFont({ src: "../public/fonts/komika.ttf" });
 
 export const metadata: Metadata = {
   title: "G-Marvel",
@@ -14,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={komika.className}>
         <NavBar />
         <div className="content">{children}</div>
       </body>

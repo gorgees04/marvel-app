@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "./ui/components/NavBar";
+import Footer from "./ui/components/Footer";
 
 // adding local font using next/font
 const komika = localFont({ src: "../public/fonts/komika.ttf" });
@@ -20,7 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={komika.className}>
         <NavBar />
-        <div className="content">{children}</div>
+        <div className="content flex-col">
+          <div className=" min-h-screen">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

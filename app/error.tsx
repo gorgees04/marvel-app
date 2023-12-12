@@ -1,4 +1,6 @@
 "use client"; // Error components must be Client Components
+import groot from "@/app/ui/img/groot.png";
+import Image from "next/image";
 
 import { useEffect } from "react";
 
@@ -15,13 +17,15 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="text-white ml-[300px] mt-[100px]">
-      <h2>Something went wrong!</h2>
+    <div className="text-white flex flex-col justify-center items-center w-full min-h-screen">
+      <Image src={groot} alt="falcon image" width={300} height={0} />
+      <h2>Sorry, something went wrong!</h2>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()
         }
+        className="text-marvelRed"
       >
         Try again
       </button>

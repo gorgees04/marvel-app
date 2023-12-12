@@ -8,7 +8,6 @@ import HomeComics from "./ui/components/home/HomeComics";
 import HomeCreators from "./ui/components/home/HomeCreators";
 import HomeEvents from "./ui/components/home/HomeEvents";
 import HomeSeries from "./ui/components/home/HomeSeries";
-import Footer from "./ui/components/Footer";
 
 export default function Home() {
   return (
@@ -22,7 +21,13 @@ export default function Home() {
         </p>
       </div>
       <div>
-        <Image src={avengersImg} alt="avengers image" width={500} height={0} />
+        <Image
+          src={avengersImg}
+          alt="avengers image"
+          width={500}
+          height={0}
+          priority={true}
+        />
       </div>
       <div>
         <Link href={"/marvel"}>

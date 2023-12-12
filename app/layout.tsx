@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={komika.className}>
         <NavBar />
         <div className="content flex-col">
-          <div className=" min-h-screen">{children}</div>
+          <div className="min-h-screen mb-[150px]">{children}</div>
           <Footer />
         </div>
       </body>

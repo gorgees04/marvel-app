@@ -29,11 +29,11 @@ export default function Home({
         </Link>
       </div>
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <HomeSearchBar />
         <HomeCategories />
         <HomeSearchContents query={query} category={category} />
-      </div>
+      </div> */}
     </main>
   );
 }

@@ -30,7 +30,11 @@ export default function Home() {
           </h2>
         </Link>
       </div>
-      <div>
+      <div className="text-center mt-14 text-slate-500 animate-bounce">
+        <h1>Scroll down to see the categories</h1>
+        <p>VVV</p>
+      </div>
+      <div className="my-10">
         <Suspense fallback={<CollectionLoadingSkeleton />}>
           <HomeCharacters />
         </Suspense>

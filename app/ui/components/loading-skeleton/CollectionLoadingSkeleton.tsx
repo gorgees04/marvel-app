@@ -2,7 +2,7 @@ import React from "react";
 import CardsLoadingSkeletons from "./CardsLoadingSkeletons";
 
 const CollectionLoadingSkeleton = () => {
-  const cards = new Array(6).fill(null);
+  const cards = new Array(9).fill(null);
   return (
     <div className="m-10 animate-pulse">
       <div className="h-7 w-32 m-3 bg-gray-700 md:my-4 "></div>

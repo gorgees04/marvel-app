@@ -25,7 +25,7 @@ const MarvelSideBar = () => {
               href={`/marvel/${category}?page=0`}
               className={clsx(
                 { "bg-marvelRed": linkCategory === category },
-                "border-2 border-white rounded-md p-1 sm:p-2 transition-all duration-300 text-center capitalize m-2 sm:m-4 sm:hover:mr-0"
+                "border-2 border-white rounded-md p-2 sm:p-3 transition-all duration-300 text-center capitalize m-2 sm:m-4 sm:hover:mr-0"
               )}
             >
               {category}

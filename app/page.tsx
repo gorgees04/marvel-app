@@ -4,10 +4,14 @@ import avengersImg from "@/app/ui/img/avengers-1.png";
 import { Suspense } from "react";
 import CollectionLoadingSkeleton from "./ui/components/loading-skeleton/CollectionLoadingSkeleton";
 import HomeCharacters from "./ui/components/home/HomeCharacters";
+import HomeComics from "./ui/components/home/HomeComics";
+import HomeCreators from "./ui/components/home/HomeCreators";
+import HomeEvents from "./ui/components/home/HomeEvents";
+import HomeSeries from "./ui/components/home/HomeSeries";
 
 export default function Home() {
   return (
-    <main className="text-white flex items-center justify-center flex-col my-[80px] mx-[30px] sm:my-[120px] sm:mx-[180px]">
+    <main className="text-white flex items-center justify-center flex-col my-[80px] mx-[30px] sm:my-[100px] sm:mx-[180px]">
       <div className="text-center mt-10">
         <h1 className="text-3xl sm:text-6xl mb-2 font-bold">
           Welcome to G-Marvel website
@@ -29,6 +33,18 @@ export default function Home() {
       <div>
         <Suspense fallback={<CollectionLoadingSkeleton />}>
           <HomeCharacters />
+        </Suspense>
+        <Suspense fallback={<CollectionLoadingSkeleton />}>
+          <HomeComics />
+        </Suspense>
+        <Suspense fallback={<CollectionLoadingSkeleton />}>
+          <HomeCreators />
+        </Suspense>
+        <Suspense fallback={<CollectionLoadingSkeleton />}>
+          <HomeEvents />
+        </Suspense>
+        <Suspense fallback={<CollectionLoadingSkeleton />}>
+          <HomeSeries />
         </Suspense>
       </div>
     </main>

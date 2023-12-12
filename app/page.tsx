@@ -8,6 +8,7 @@ import HomeComics from "./ui/components/home/HomeComics";
 import HomeCreators from "./ui/components/home/HomeCreators";
 import HomeEvents from "./ui/components/home/HomeEvents";
 import HomeSeries from "./ui/components/home/HomeSeries";
+import Footer from "./ui/components/Footer";
 
 export default function Home() {
   return (

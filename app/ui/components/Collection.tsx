@@ -1,5 +1,6 @@
 import { CollectionType } from "@/app/lib/definitions";
 import Card from "./Card";
+import Link from "next/link";
 
 const Collection = ({
   title,
@@ -11,7 +12,9 @@ const Collection = ({
   if (category.length > 0) {
     return (
       <div className="m-10">
-        <h1 className="text-4xl font-bold text-marvelRed m-2">{title}</h1>
+        <Link href={`/marvel/${title.toLowerCase()}`}>
+          <h1 className="text-4xl font-bold text-marvelRed m-2">{title}</h1>
+        </Link>
         <div className="overflow-x-auto flex items-center justify-start shadow-lg shadow-black">
           {category.map((category: CollectionType) => {
             // Checking the namining of card weather in api there is name / title

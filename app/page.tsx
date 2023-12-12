@@ -1,16 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import avengersImg from "@/app/ui/img/avengers-1.png";
+import { Suspense } from "react";
+import CollectionLoadingSkeleton from "./ui/components/loading-skeleton/CollectionLoadingSkeleton";
+import HomeCharacters from "./ui/components/home/HomeCharacters";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { query: string; category: string };
-}) {
-  const query = searchParams.query;
-  const category = searchParams.category;
+export default function Home() {
   return (
-    <main className="text-white flex items-center flex-col my-[80px] mx-[50px] sm:my-[120px] sm:mx-[180px]">
+    <main className="text-white flex items-center justify-center flex-col my-[80px] mx-[30px] sm:my-[120px] sm:mx-[180px]">
       <div className="text-center mt-10">
         <h1 className="text-3xl sm:text-6xl mb-2 font-bold">
           Welcome to G-Marvel website
@@ -28,6 +25,11 @@ export default function Home({
             Explore the Marvel Universe &gt;&gt;
           </h2>
         </Link>
+      </div>
+      <div>
+        <Suspense fallback={<CollectionLoadingSkeleton />}>
+          <HomeCharacters />
+        </Suspense>
       </div>
     </main>
   );

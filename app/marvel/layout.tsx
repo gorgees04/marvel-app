@@ -1,6 +1,4 @@
-import Footer from "../ui/components/Footer";
 import MarvelSideBar from "../ui/components/MarvelSideBar";
-import NavBar from "../ui/components/NavBar";
 
 export default function marvelLayout({
   children,

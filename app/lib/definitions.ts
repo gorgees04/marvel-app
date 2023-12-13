@@ -1,14 +1,14 @@
+export interface Img {
+  path: string;
+  extension: string;
+}
+
 export interface Character {
   id: string;
   chategory: string;
   name: string;
   description: string;
   thumbnail: { path: string; extension: string };
-}
-
-export interface Img {
-  path: string;
-  extension: string;
 }
 
 export interface Comic {

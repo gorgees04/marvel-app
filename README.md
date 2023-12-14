@@ -1,1 +1,1 @@
-LINK: https://g-marvel.netlify.app/
+LIVE DEMO: https://g-marvel.netlify.app/

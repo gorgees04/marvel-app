@@ -25,19 +25,6 @@ export const getImageUrl = (img: Img) => {
   return `${img.path}/${IMG_SIZE}.${img.extension}`;
 };
 
-//////////Home Search Agent//////////
-
-export const urlMainSearch = (category = "characters", value: string) => {
-  // each api endpoint has diffret naming for search
-  let start;
-  if (category === "series" || category === "comics") {
-    start = "title";
-  } else {
-    start = "name";
-  }
-  return `${API_URL}/v1/public/${category}?${start}StartsWith=${value}&${link}`;
-};
-
 /////////characters section///////////
 
 const charactersBaseUrl = `${API_URL}/v1/public/characters`;

@@ -1,27 +1,51 @@
 # G-Marvel App
 
+**[LIVE DEMO](https://marvel-app-beta-ruddy.vercel.app)**
+
+<br>
+
+# Description
+
 G-Marvel is a project that utilizes the Marvel API to fetch and display information about Marvel comics, characters, and more.
 
-[DEMO](https://marvel-app-beta-ruddy.vercel.app/)
+<br>
 
-# Technologies Used
+# Tools
 
-- React
-- Next.js
+- JavaScript
 - TypeScript
+- React
+- NextJs
 - Tailwind CSS
 
-# Packages
+<br>
 
-*clsx*
-- Purpose: Simplifies conditional class name assignment in JavaScript/TypeScript projects, especially in React applications.
-- Usage: Easily constructs class names based on conditions using strings, objects, or arrays.
-  
-*crypto-js*
-- Purpose: Provides cryptographic functions like encryption, decryption, and hashing in JavaScript.
-- Usage: Performs various cryptographic operations such as hashing passwords or encrypting data.
-  
-*use-debounce*
-- Purpose: A custom React hook for delaying function execution, commonly used for debouncing user input.
-- Usage: Delays the execution of a function until a certain time has passed without further function calls, helpful for search bars and similar scenarios.
+# packages
 
+- crypto-js
+- use-debounce
+- clsx
+
+<br>
+
+# Developer
+
+**Gorgees Odisho**
+
+- [LinkedIn](https://www.linkedin.com/in/gorgees/)
+
+<br>
+
+---
+
+<div>
+    <img src="public/project-screenshoots/mob-1.png" alt="Alt Text" title="Title" width="112px">
+    <img src="public/project-screenshoots/mob-2.png" alt="Alt Text" title="Title" width="112px">
+</div>
+
+<div>
+    <img src="public/project-screenshoots/img-1.png" alt="Alt Text" title="Title" width="400px">
+    <img src="public/project-screenshoots/img-2.png" alt="Alt Text" title="Title" width="400px">
+    <img src="public/project-screenshoots/img-3.png" alt="Alt Text" title="Title" width="400px">
+    <img src="public/project-screenshoots/img-4.png" alt="Alt Text" title="Title" width="400px">
+</div>

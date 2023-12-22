@@ -9,9 +9,9 @@ const Footer = () => {
   return (
     <div className="h-[240px] bg-stone-950 text-offWhite w-full flex justify-center items-center shadow-lg shadow-black border-t-4 border-offWhite">
       <div className="m-10 text-center">
-        <h1 className="text-2xl">Gorgees Odisho</h1>
+        <h1 className="text-xl">Gorgees Odisho</h1>
         <p className=" text-gray-500">Web Developer</p>
-        <div className="flex justify-around items-center my-5 text-xl">
+        <div className="flex justify-around items-center my-5 text-lg">
           <a href="https://github.com/gorgees04" target="_blank">
             <FaGithubAlt />
           </a>
@@ -32,9 +32,9 @@ const Footer = () => {
       <Image
         src={profile}
         alt="profile"
-        width={150}
+        width={140}
         height={0}
-        className="rounded-full shadow-lg shadow-black"
+        className="rounded-full shadow-lg shadow-black border-2 border-offWhite"
       />
     </div>
   );
